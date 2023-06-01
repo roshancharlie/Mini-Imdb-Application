@@ -30,3 +30,6 @@ The Miniature IMDb Application is a web-based application that allows users to s
 # Customization
 - CSS Styles: The application uses a custom CSS style inspired by IMDb's design. You can modify the CSS styles in the app.py file to customize the appearance of the application.
 - Data Source: The application retrieves movie details from a data source. You can update the data source or integrate it with your own movie database by modifying the relevant functions in the app.py file.
+
+# License
+This project is licensed under the [Apache License](https://github.com/roshancharlie/Mini-Imdb-Application/blob/main/LICENSE)
