@@ -14,7 +14,7 @@ The Miniature IMDb Application is a web-based application that allows users to s
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/yourusername/miniature-imdb.git
+   git clone https://github.com/roshancharlie/Mini-Imdb-Application.git
    
    pip install -r requirements.txt
    
