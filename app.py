@@ -12,10 +12,17 @@ knn = load_knn_model()
 
 
 def recommend_movies(movie_title, num_recommendations=5):
+    # Find the index of the movie title
     movie_index = movie[movie['title'] == movie_title].index[0]
+
+    # Get the indices of similar movies based on content similarity
     _, indices = knn.kneighbors([content_similarity[movie_index]], n_neighbors=num_recommendations+1)
+
+    # Exclude the movie itself from recommendations
     indices = indices.squeeze()[1:]
-    recommended_movies = movie.iloc[indices]['title'].tolist()  # Convert Series to list
+
+    # Return the recommended movie titles
+    recommended_movies = movie.iloc[indices]['title']
     return recommended_movies
 
 
