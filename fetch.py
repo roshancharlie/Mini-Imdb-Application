@@ -23,7 +23,7 @@ def get_movie_details(movie_title):
         movie_url = ia.get_imdbURL(movie)
         cast = [actor['name'] for actor in movie['cast'][:10]]  # Get only the first 10 cast members
         poster_url = movie['full-size cover url']
-        plot = movie['plot']
+        plot = movie['plot'][0]
         year = movie['year']
         country = movie['countries'][0]
         genres = movie['genres']

@@ -38,6 +38,7 @@ def main():
             font-size: 36px;
             font-weight: bold;
             color: #003580;
+            text-align: center;
         }
 
         .subheader {
@@ -98,7 +99,7 @@ def main():
         unsafe_allow_html=True
     )
 
-    st.title("Miniature IMDB Application")
+    st.markdown("<h1 class='title'>Miniature IMDB Application</h1>", unsafe_allow_html=True)
 
     # Sidebar - Movie Title Slider
     movie_title = st.sidebar.selectbox("Select a Movie", options=movie['title'])
@@ -107,37 +108,28 @@ def main():
     search_button = st.sidebar.button("Search")
 
     if search_button:
-        st.header("Movie Information")
         movie_details = get_movie_details(movie_title)
 
         if movie_details:
             title, movie_url, cast, poster_url, plot, year, country, genres = movie_details
 
             # Display movie information
-            st.subheader("Title")
-            st.markdown(f"<p class='subheader'>{title}</p>", unsafe_allow_html=True)
-
-
-            st.subheader("IMDb URL")
-            st.markdown(f"<p><a href='{movie_url}' target='_blank'>{movie_url}</a></p>", unsafe_allow_html=True)
-
-            st.subheader("Cast")
-            st.markdown(f"<p>{', '.join(cast)}</p>", unsafe_allow_html=True)
-
-            st.subheader("Poster")
+            st.markdown(f"<a href='{movie_url}' target='_blank'><h1 class='title'>{title}</h1></a>", unsafe_allow_html=True)
+            
+            # Poster
             st.image(poster_url, caption=title, use_column_width=True, output_format="JPEG")
 
-            st.subheader("Plot")
-            st.markdown(f"<p>{plot}</p>", unsafe_allow_html=True)
+            # Plot
+            with st.expander("Plot", expanded=True):
+                st.markdown(f"<p>{plot}</p>", unsafe_allow_html=True)
 
-            st.subheader("Year")
-            st.markdown(f"<p>{year}</p>", unsafe_allow_html=True)
+            # Year, Country, Genres
+            with st.expander("Details", expanded=True):
+                st.markdown(f"Year: {year}  \nCountry: {country}  \nGenres: {', '.join(genres)}", unsafe_allow_html=True)
 
-            st.subheader("Country")
-            st.markdown(f"<p>{country}</p>", unsafe_allow_html=True)
-
-            st.subheader("Genres")
-            st.markdown(f"<p>{', '.join(genres)}</p>", unsafe_allow_html=True)
+            # Cast
+            with st.expander("Cast", expanded=True):
+                st.markdown(f"<p>{', '.join(cast)}</p>", unsafe_allow_html=True)
 
             st.header("Recommendation")
             recommended_movies = recommend_movies(movie_title, num_recommendations=5)
@@ -194,3 +186,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
